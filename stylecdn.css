@@ -1,0 +1,303 @@
+@font-face {
+    font-family: head;
+    src: url(./InterVariable.ff710c09.woff2);
+}
+
+@font-face {
+    font-family: gilroy;
+    src: url('https://biisal.github.io/Resources/Gilroy-Semibold_zTZ2PgJOF.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: gilroy;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #1d1d1d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    height: 5px;
+    display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #f20000;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+.main {
+    height: 95%;
+    width: 300px;
+    background-color: white;
+    border-radius: 7px;
+    overflow: hidden;
+    position: relative;
+
+
+}
+
+.inner-main {
+    height: 100%;
+    width: 300%;
+    display: flex;
+
+}
+
+.page {
+    height: 100%;
+    width: 300px;
+    background-color: #000000;
+    overflow-y: scroll;
+    scroll-snap-align: center;
+
+}
+
+.welcome {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 42px;
+}
+
+.welcome h1 {
+    font-family: gilroy;
+    font-size: 30px;
+    padding: 0 20px;
+}
+
+.file-name {
+    font-size: 14px;
+    width: 90%;
+    min-height: 50px;
+    background-color: #55555557;
+    text-align: left;
+    padding: 5%;
+    border-radius: 7px;
+
+}
+
+.download {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+}
+
+.download h1 {
+    padding: 0 3%;
+}
+
+
+.download span img {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: -10px;
+    border: 2px solid black;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+}
+
+button {
+    width: 75%;
+    height: 40px;
+    background-color: transparent;
+    border: 1.5px solid white;
+    outline: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: gilroy;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+.btm-nav {
+    position: fixed;
+    height: 50px;
+    bottom: 10px;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    border-radius: 7px;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.26);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+}
+
+li {
+    font-weight: 600;
+    margin: 0 10px;
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-family: gilroy;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    transition: all 0.4s ease;
+}
+
+.active {
+    transition: all 0.4s ease;
+
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 2px;
+    border-radius: 35px;
+    width: 100%;
+    background-color: #f20000;
+    transition: all 0.4s ease;
+}
+
+/* page 2 */
+.top {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 30px;
+    scroll-snap-align: center;
+    padding-top: 20px;
+
+}
+
+.page2 video {
+    border-radius: 8px;
+    border: 2px solid #b8e1e447;
+}
+
+.dont-scroll {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 0 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    opacity: .9;
+}
+
+.disclaimer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 0 30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    opacity: .9;
+}
+
+.disc-inner {
+    padding: 60px 0;
+    width: 100%;
+    background-position: center;
+    /* border: 2px solid white; */
+    text-align: left;
+
+}
+
+.disc-inner p {
+    margin-top: 15px;
+    width: 100%;
+    line-height: .9rem;
+    font-size: 11px;
+    font-weight: 400;
+    opacity: .8;
+}
+
+.about {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about h4 {
+    padding-inline: 20px;
+    font-size: 13px;
+    opacity: .7;
+    text-align: center;
+}
+
+.socials {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.socials h3 {
+    text-align: center;
+}
