@@ -235,7 +235,7 @@ const controls = [
     'settings',
     'pip',
     'airplay',
-    'download',
+     // 'download',
     'fullscreen'
 ];
 document.addEventListener('DOMContentLoaded', () => {
@@ -261,46 +261,46 @@ document.addEventListener('keydown', function (e) {
 
 
 const videolink = window.location.href;
-const bisallink = videolink.replace("/watch/", "/");
+const streamlink = videolink.replace("/watch/", "/dl/");
 
 function vlc_player() {
-    const openbisallink = streamlink;
-    const openVlc = `vlc://${openbisallink}`;
+    const openstreamlink = streamlink;
+    const openVlc = `vlc://${openstreamlink}`;
     window.location.href = openVlc;
 }
 
 function mx_player() {
-    const openbisallink = streamlink;
-    const openMx = `intent:${openbisallink}#Intent;package=com.mxtech.videoplayer.ad;end`;
+    const openstreamlink = streamlink;
+    const openMx = `intent:${openstreamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
     window.location.href = openMx;
 }
 
 function playit_player() {
-    const openbisallink = streamlink;
-    const openPlayit = `playit://playerv2/video?url=${openbisallink}`;
+    const openstreamlink = streamlink;
+    const openPlayit = `playit://playerv2/video?url=${openstreamlink}`;
     window.location.href = openPlayit;
 }
 
 function s_player() {
-    const openbisallink = streamlink;
-    const openSplayer = `intent:${openbisallink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
+    const openstreamlink = streamlink;
+    const openSplayer = `intent:${openstreamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
     window.location.href = openSplayer;
 }
 
 function km_player() {
-    const openbisallink = streamlink;
-    const openKmplayer = `intent:${openbisallink}#Intent;package=com.kmplayer;end`;
+    const openstreamlink = streamlink;
+    const openKmplayer = `intent:${openstreamlink}#Intent;package=com.kmplayer;end`;
     window.location.href = openKmplayer;
 }
 
 function hd_player() {
-    const openbisallink = streamlink;
-    const openHDplayer = `intent:${openbisallink}#Intent;package=uplayer.video.player;end`;
+    const openstreamlink = streamlink;
+    const openHDplayer = `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
 }
 
 function streamDownload() {
-  const openstreamlink = streamlink;
+const openstreamlink = streamlink;
   window.location.href = openstreamlink;
 }
 function copyStreamLink() {
