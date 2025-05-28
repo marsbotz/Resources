@@ -264,42 +264,76 @@ const videolink = window.location.href;
 const bisallink = videolink.replace("/watch/", "/");
 
 function vlc_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openVlc = `vlc://${openbisallink}`;
     window.location.href = openVlc;
 }
 
 function mx_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openMx = `intent:${openbisallink}#Intent;package=com.mxtech.videoplayer.ad;end`;
     window.location.href = openMx;
 }
 
 function playit_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openPlayit = `playit://playerv2/video?url=${openbisallink}`;
     window.location.href = openPlayit;
 }
 
 function s_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openSplayer = `intent:${openbisallink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
     window.location.href = openSplayer;
 }
 
 function km_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openKmplayer = `intent:${openbisallink}#Intent;package=com.kmplayer;end`;
     window.location.href = openKmplayer;
 }
 
 function hd_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openHDplayer = `intent:${openbisallink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
 }
 
-function bisalDownload() {
-    const openbisallink = bisallink;
-    window.location.href = openbisallink;
+function streamDownload() {
+  const openstreamlink = streamlink;
+  window.location.href = openstreamlink;
+}
+function copyStreamLink() {
+  const linkToCopy = streamlink.toLowerCase();
+
+  if (!navigator.clipboard) {
+    navigator.clipboard = {
+      writeText: function(text) {
+        return new Promise((resolve, reject) => {
+          try {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
+      }
+    };
+  }
+
+  navigator.clipboard.writeText(linkToCopy)
+    .then(() => {
+      console.log('Stream link copied to clipboard!');
+      alert('Stream link copied successfully!');
+    })
+    .catch(err => {
+      console.error('Failed to copy link: ', err);
+      alert('Failed to copy link. Please try manually.');
+    });
 }
