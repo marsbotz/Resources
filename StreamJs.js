@@ -346,10 +346,24 @@ function vlc_player() {
 }
 
 // MX Player
-function mx_player() {
+/*function mx_player() {
     const openMx = `intent:${streamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
     window.location.href = openMx;
+}*/
+
+function mx_player() {
+    const streamlink = window.location.href.replace("/watch/", "/");
+
+    // Make sure it's a proper HTTPS link
+    if (!streamlink.startsWith("http")) {
+        alert("Invalid video URL");
+        return;
+    }
+
+    const intentUrl = `intent:${streamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
+    window.location.href = intentUrl;
 }
+
 
 // Playit Player
 function playit_player() {
