@@ -263,7 +263,7 @@ document.addEventListener('keydown', function (e) {
 const videolink = window.location.href;
 const streamlink = videolink.replace("/watch/", "/dl/");
 
-function vlc_player() {
+/*function vlc_player() {
     const openstreamlink = streamlink;
     const openVlc = `vlc://${openstreamlink}`;
     window.location.href = openVlc;
@@ -297,8 +297,23 @@ function hd_player() {
     const openstreamlink = streamlink;
     const openHDplayer = `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
-}
+}*/
+const playerUrlBuilder = {
+    //'vlc-pc': url => `vlc://${url}`,
+    //'potplayer': url => `potplayer://${url}`,
+    //'mpc': url => `mpc://${url}`,
+    //'kmpc': url => `kmplayer://${url}`,
+    'vlc': url => `intent:${openstreamlink}#Intent;package=org.videolan.vlc;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
+    'mx': url => `intent:${openstreamlink}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
+    //'mxpro': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
+    'nplayer': url => `nplayer-${openstreamlink}`,
+    'splayer': url => `intent:${openstreamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
+    'km': url => `intent:${openstreamlink}#Intent;package=com.kmplayer;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
+    'hd': url => `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`,
+    'playit': url => `playit://playerv2/video?url=${openstreamlink}`
+};
 
+    
 function streamDownload() {
 const openstreamlink = streamlink;
   window.location.href = openstreamlink;
