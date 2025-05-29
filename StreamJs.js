@@ -298,7 +298,7 @@ function hd_player() {
     const openHDplayer = `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
 }
-const playerUrlBuilder = {
+/*const playerUrlBuilder = {
     //'vlc-pc': url => `vlc://${url}`,
     //'potplayer': url => `potplayer://${url}`,
     //'mpc': url => `mpc://${url}`,
@@ -322,7 +322,7 @@ const playerUrlBuilder = {
         if (!urlBuilder || !finalUrl || !finalUrl.startsWith('http')) { 
             showToast(`Invalid URL or player type`, 'error'); 
             return; 
-        }
+        }*/
     
 function streamDownload() {
 const openstreamlink = streamlink;
