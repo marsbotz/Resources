@@ -298,32 +298,66 @@ function hd_player() {
     const openHDplayer = `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
 }*/
+// Get final stream link from current URL
+
+
+// Player URL generators
+// Player URL builders
 const playerUrlBuilder = {
-    'vlc': url => `intent:${url}#Intent;package=org.videolan.vlc;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
-    'mx': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
-    'splayer': url => `intent:${url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
-    'km': url => `intent:${url}#Intent;package=com.kmplayer;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
-    'hd': url => `intent:${url}#Intent;package=uplayer.video.player;end`,
-    'pl': url => `intent:${url}#Intent;package=playit.video.player;end`,
-    'nplayer': url => `nplayer-${url}`,
+    vlc: url => `vlc://${url}`,
+    mx: url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;end`,
+    pl: url => `playit://playerv2/video?url=${url}`,
+    splayer: url => `intent:${url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
+    km: url => `intent:${url}#Intent;package=com.kmplayer;end`,
+    hd: url => `intent:${url}#Intent;package=uplayer.video.player;end`
 };
 
-app.playOnline = type => {
-    closeDropdown();
-
-    const urlBuilder = playerUrlBuilder[type];
-    const playerName = type.replace('-pc', ' (PC)')
-        .replace(/([A-Z])/g, ' $1')
-        .replace(/^./, str => str.toUpperCase());
-
-    const finalUrl = getFinalUrl?.();  // ✅ This should return the current file's streaming URL
-
-    if (!urlBuilder || !finalUrl || !finalUrl.startsWith('http')) {
-        showToast(`Invalid URL or player type`, 'error');
+// Universal function to open link in selected player
+function playOnline(type) {
+    const builder = playerUrlBuilder[type];
+    if (!builder || !streamlink || !streamlink.startsWith("http")) {
+        alert("Invalid stream link or player type.");
         return;
     }
+    const finalURL = builder(streamlink);
+    window.location.href = finalURL;
+}
+    
+function streamDownload() {
+const openstreamlink = streamlink;
+  window.location.href = openstreamlink;
+}
+function copyStreamLink() {
+  const linkToCopy = streamlink.toLowerCase();
 
-    const streamLink = urlBuilder(finalUrl);
-    window.location.href = streamLink; // ✅ This triggers the player
-};
+  if (!navigator.clipboard) {
+    navigator.clipboard = {
+      writeText: function(text) {
+        return new Promise((resolve, reject) => {
+          try {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            resolve();
+          } catch (err) {
+            reject(err);
+          }
+        });
+      }
+    };
+  }
 
+  navigator.clipboard.writeText(linkToCopy)
+    .then(() => {
+      console.log('Stream link copied to clipboard!');
+      alert('Stream link copied successfully!');
+    })
+    .catch(err => {
+      console.error('Failed to copy link: ', err);
+      alert('Failed to copy link. Please try manually.');
+    });
+}
