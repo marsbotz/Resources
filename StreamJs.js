@@ -312,7 +312,17 @@ const playerUrlBuilder = {
     'hd': url => `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`,
     'playit': url => `playit://playerv2/video?url=${openstreamlink}`
 };
-
+   app.playOnline = type => {
+        closeDropdown();
+        const urlBuilder = playerUrlBuilder[type];
+        const playerName = type.replace('-pc', ' (PC)')
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, str => str.toUpperCase());
+        
+        if (!urlBuilder || !finalUrl || !finalUrl.startsWith('http')) { 
+            showToast(`Invalid URL or player type`, 'error'); 
+            return; 
+        }
     
 function streamDownload() {
 const openstreamlink = streamlink;
