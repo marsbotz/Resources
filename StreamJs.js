@@ -299,66 +299,31 @@ function hd_player() {
     window.location.href = openHDplayer;
 }*/
 const playerUrlBuilder = {
-    //'vlc-pc': url => `vlc://${url}`,
-    //'potplayer': url => `potplayer://${url}`,
-    //'mpc': url => `mpc://${url}`,
-    //'kmpc': url => `kmplayer://${url}`,
-    'vlc': url => `intent:${openstreamlink}#Intent;package=org.videolan.vlc;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
-    'mx': url => `intent:${openstreamlink}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
-    //'mxpro': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
-    'nplayer': url => `nplayer-${openstreamlink}`,
-    'splayer': url => `intent:${openstreamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
-    'km': url => `intent:${openstreamlink}#Intent;package=com.kmplayer;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
-    'hd': url => `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`,
-    'pl': url => `playit://playerv2/video?url=${openstreamlink}`
+    'vlc': url => `intent:${url}#Intent;package=org.videolan.vlc;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
+    'mx': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
+    'splayer': url => `intent:${url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
+    'km': url => `intent:${url}#Intent;package=com.kmplayer;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
+    'hd': url => `intent:${url}#Intent;package=uplayer.video.player;end`,
+    'pl': url => `intent:${url}#Intent;package=playit.video.player;end`,
+    'nplayer': url => `nplayer-${url}`,
 };
-   app.playOnline = type => {
-        closeDropdown();
-        const urlBuilder = playerUrlBuilder[type];
-        const playerName = type.replace('-pc', ' (PC)')
-            .replace(/([A-Z])/g, ' $1')
-            .replace(/^./, str => str.toUpperCase());
-        
-        if (!urlBuilder || !finalUrl || !finalUrl.startsWith('http')) { 
-            showToast(`Invalid URL or player type`, 'error'); 
-            return; 
-        }
-    
-function streamDownload() {
-const openstreamlink = streamlink;
-  window.location.href = openstreamlink;
-}
-function copyStreamLink() {
-  const linkToCopy = streamlink.toLowerCase();
 
-  if (!navigator.clipboard) {
-    navigator.clipboard = {
-      writeText: function(text) {
-        return new Promise((resolve, reject) => {
-          try {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            resolve();
-          } catch (err) {
-            reject(err);
-          }
-        });
-      }
-    };
-  }
+app.playOnline = type => {
+    closeDropdown();
 
-  navigator.clipboard.writeText(linkToCopy)
-    .then(() => {
-      console.log('Stream link copied to clipboard!');
-      alert('Stream link copied successfully!');
-    })
-    .catch(err => {
-      console.error('Failed to copy link: ', err);
-      alert('Failed to copy link. Please try manually.');
-    });
-}
+    const urlBuilder = playerUrlBuilder[type];
+    const playerName = type.replace('-pc', ' (PC)')
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, str => str.toUpperCase());
+
+    const finalUrl = getFinalUrl?.();  // ✅ This should return the current file's streaming URL
+
+    if (!urlBuilder || !finalUrl || !finalUrl.startsWith('http')) {
+        showToast(`Invalid URL or player type`, 'error');
+        return;
+    }
+
+    const streamLink = urlBuilder(finalUrl);
+    window.location.href = streamLink; // ✅ This triggers the player
+};
+
