@@ -303,7 +303,7 @@ function hd_player() {
 
 // Player URL generators
 // Player URL builders
-const playerUrlBuilder = {
+/*const playerUrlBuilder = {
     vlc: url => `vlc://${url}`,
     mx: url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;end`,
     pl: url => `playit://playerv2/video?url=${url}`,
@@ -326,6 +326,53 @@ function playOnline(type) {
 function streamDownload() {
 const openstreamlink = streamlink;
   window.location.href = openstreamlink;
+}*/
+// Download link
+function streamDownload() {
+    window.location.href = streamlink;
+}
+
+// Copy to clipboard
+function copyLink() {
+    navigator.clipboard.writeText(streamlink)
+        .then(() => alert("Link copied to clipboard!"))
+        .catch(err => alert("Failed to copy link."));
+}
+
+// VLC Player
+function vlc_player() {
+    const openVlc = `vlc://${streamlink}`;
+    window.location.href = openVlc;
+}
+
+// MX Player
+function mx_player() {
+    const openMx = `intent:${streamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
+    window.location.href = openMx;
+}
+
+// Playit Player
+function playit_player() {
+    const openPlayit = `playit://playerv2/video?url=${streamlink}`;
+    window.location.href = openPlayit;
+}
+
+// S Player
+function s_player() {
+    const openSplayer = `intent:${streamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
+    window.location.href = openSplayer;
+}
+
+// KM Player
+function km_player() {
+    const openKmplayer = `intent:${streamlink}#Intent;package=com.kmplayer;end`;
+    window.location.href = openKmplayer;
+}
+
+// HD Video Player
+function hd_player() {
+    const openHDplayer = `intent:${streamlink}#Intent;package=uplayer.video.player;end`;
+    window.location.href = openHDplayer;
 }
 function copyStreamLink() {
   const linkToCopy = streamlink.toLowerCase();
