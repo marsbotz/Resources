@@ -263,7 +263,7 @@ document.addEventListener('keydown', function (e) {
 const videolink = window.location.href;
 const streamlink = videolink.replace("/watch/", "/dl/");
 
-/*function vlc_player() {
+function vlc_player() {
     const openstreamlink = streamlink;
     const openVlc = `vlc://${openstreamlink}`;
     window.location.href = openVlc;
@@ -297,7 +297,7 @@ function hd_player() {
     const openstreamlink = streamlink;
     const openHDplayer = `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
-}*/
+}
 const playerUrlBuilder = {
     //'vlc-pc': url => `vlc://${url}`,
     //'potplayer': url => `potplayer://${url}`,
