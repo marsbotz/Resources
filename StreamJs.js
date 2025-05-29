@@ -310,7 +310,7 @@ const playerUrlBuilder = {
     'splayer': url => `intent:${openstreamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
     'km': url => `intent:${openstreamlink}#Intent;package=com.kmplayer;S.title=${encodeURIComponent(getCurrentFileName?.() || 'Video')};end`,
     'hd': url => `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`,
-    'playit': url => `playit://playerv2/video?url=${openstreamlink}`
+    'pl': url => `playit://playerv2/video?url=${openstreamlink}`
 };
    app.playOnline = type => {
         closeDropdown();
