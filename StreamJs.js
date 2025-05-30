@@ -259,7 +259,46 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
+const playerUrlBuilder = {
+        'vlc-pc': url => `vlc://${url}`,
+        'potplayer': url => `potplayer://${url}`,
+        'mpc': url => `mpc://${url}`,
+        'kmpc': url => `kmplayer://${url}`,
+        'np': url => `playit://playerv2/video?url=${url}`,
+        sp:
+        'vlc': url => `intent:${url}#Intent;package=org.videolan.vlc;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
+        'mx': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
+        'mxpro': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
+        'nplayer': url => `nplayer-${url}`,
+        'splayer': url => `intent:${url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
+        'km': url => `intent:${url}#Intent;package=com.kmplayer;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
+        'hd': url => `intent:${url}#Intent;package=uplayer.video.player;end`
+    };
+    
+    /*const playerUrlBuilder = {
+    'vlc': url => `vlc://${url}`,
+    'mx': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encodeURIComponent(getCurrentFileName())};end`,
+    'mxpro': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encodeURIComponent(getCurrentFileName())};end`,
+    'playit': url => `playit://playerv2/video?url=${url}`,
+    'nplayer': url => `nplayer-${url}`
+  };*/
 
+  function playOnline(type) {
+    const builder = playerUrlBuilder[type];
+    if (!builder || !streamlink.startsWith("http")) {
+      alert("Invalid player or stream link");
+      return;
+    }
+
+const videolink = window.location.href;
+const streamlink = videolink.replace("/watch/", "/dl/");
+
+Copy to clipboard
+function copyLink() {
+    navigator.clipboard.writeText(streamlink)
+        .then(() => alert("Link copied to clipboard!"))
+        .catch(err => alert("Failed to copy link."));
+}
 /*const videolink = window.location.href;
 const streamlink = videolink.replace("/watch/", "/dl/");
 
