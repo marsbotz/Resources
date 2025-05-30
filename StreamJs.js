@@ -260,7 +260,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-const videolink = window.location.href;
+/*const videolink = window.location.href;
 const streamlink = videolink.replace("/watch/", "/dl/");
 
 /*function vlc_player() {
@@ -326,7 +326,7 @@ function playOnline(type) {
 function streamDownload() {
 const openstreamlink = streamlink;
   window.location.href = openstreamlink;
-}*/
+}
 // Download link
 function streamDownload() {
     window.location.href = streamlink;
@@ -349,7 +349,7 @@ function vlc_player() {
 /*function mx_player() {
     const openMx = `intent:${streamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
     window.location.href = openMx;
-}*/
+}
 
 function mx_player() {
     const streamlink = window.location.href.replace("/watch/", "/");
@@ -421,4 +421,4 @@ function copyStreamLink() {
       console.error('Failed to copy link: ', err);
       alert('Failed to copy link. Please try manually.');
     });
-}
+}*/
