@@ -235,7 +235,7 @@ const controls = [
     'settings',
     'pip',
     'airplay',
-     // 'download',
+    'download',
     'fullscreen'
 ];
 document.addEventListener('DOMContentLoaded', () => {
@@ -258,215 +258,48 @@ document.addEventListener('keydown', function (e) {
         e.preventDefault();
     }
 });
-const playerUrlBuilder = {
-        'vlc-pc': url => `vlc://${url}`,
-        'potplayer': url => `potplayer://${url}`,
-        'mpc': url => `mpc://${url}`,
-        'kmpc': url => `kmplayer://${url}`,
-        'np': url => `playit://playerv2/video?url=${url}`,
-        sp:
-        'vlc': url => `intent:${url}#Intent;package=org.videolan.vlc;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
-        'mx': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
-        'mxpro': url => `intent:${url}#Intent;package=com.mxtech.videoplayer.pro;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
-        'nplayer': url => `nplayer-${url}`,
-        'splayer': url => `intent:${url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
-        'km': url => `intent:${url}#Intent;package=com.kmplayer;S.title=${encodeURIComponent(getCurrentFileName() || 'Video')};end`,
-        'hd': url => `intent:${url}#Intent;package=uplayer.video.player;end`
-    };
-    
-    app.playOnline = type => {
-        closeDropdown();
-        const urlBuilder = playerUrlBuilder[type];
-        const playerName = type.replace('-pc', ' (PC)')
-            .replace(/([A-Z])/g, ' $1')
-            .replace(/^./, str => str.toUpperCase());
-        
-        if (!urlBuilder || !finalUrl || !finalUrl.startsWith('http')) { 
-            showToast(`Invalid URL or player type`, 'error'); 
-            return; 
-        }
-        
-        const appUrl = urlBuilder(finalUrl);
-        
-        try {
-            const win = window.open(appUrl, '_blank');
-            if (!win || win.closed || typeof win.closed === 'undefined') {
-                showToast(`Trying to open ${playerName}...`, 'info');
-                setTimeout(() => { window.location.href = appUrl; }, 300);
-            } else { 
-                showToast(`Launching ${playerName}...`, 'info'); 
-            }
-        } catch (err) { 
-            console.error('Error opening external player:', err); 
-            showToast(`Failed to open ${playerName}`, 'error'); 
-        }
-    };
+
 
 const videolink = window.location.href;
-const streamlink = videolink.replace("/watch/", "/dl/");
+const bisallink = videolink.replace("/watch/", "/");
 
-Copy to clipboard
-function copyLink() {
-    navigator.clipboard.writeText(streamlink)
-        .then(() => alert("Link copied to clipboard!"))
-        .catch(err => alert("Failed to copy link."));
-}
-/*function vlc_player() {
-    const openstreamlink = streamlink;
-    const openVlc = `vlc://${openstreamlink}`;
-    window.location.href = openVlc;
-}
-
-function mx_player() {
-    const openstreamlink = streamlink;
-    const openMx = `intent:${openstreamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
-    window.location.href = openMx;
-}
-
-function playit_player() {
-    const openstreamlink = streamlink;
-    const openPlayit = `playit://playerv2/video?url=${openstreamlink}`;
-    window.location.href = openPlayit;
-}
-
-function s_player() {
-    const openstreamlink = streamlink;
-    const openSplayer = `intent:${openstreamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
-    window.location.href = openSplayer;
-}
-
-function km_player() {
-    const openstreamlink = streamlink;
-    const openKmplayer = `intent:${openstreamlink}#Intent;package=com.kmplayer;end`;
-    window.location.href = openKmplayer;
-}
-
-function hd_player() {
-    const openstreamlink = streamlink;
-    const openHDplayer = `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`;
-    window.location.href = openHDplayer;
-}*/
-// Get final stream link from current URL
-
-
-// Player URL generators
-// Player URL builders
-/*const playerUrlBuilder = {
-    vlc: url => `vlc://${url}`,
-    mx: url => `intent:${url}#Intent;package=com.mxtech.videoplayer.ad;end`,
-    pl: url => `playit://playerv2/video?url=${url}`,
-    splayer: url => `intent:${url}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`,
-    km: url => `intent:${url}#Intent;package=com.kmplayer;end`,
-    hd: url => `intent:${url}#Intent;package=uplayer.video.player;end`
-};
-
-// Universal function to open link in selected player
-function playOnline(type) {
-    const builder = playerUrlBuilder[type];
-    if (!builder || !streamlink || !streamlink.startsWith("http")) {
-        alert("Invalid stream link or player type.");
-        return;
-    }
-    const finalURL = builder(streamlink);
-    window.location.href = finalURL;
-}
-    
-function streamDownload() {
-const openstreamlink = streamlink;
-  window.location.href = openstreamlink;
-}
-// Download link
-function streamDownload() {
-    window.location.href = streamlink;
-}
-
-// Copy to clipboard
-function copyLink() {
-    navigator.clipboard.writeText(streamlink)
-        .then(() => alert("Link copied to clipboard!"))
-        .catch(err => alert("Failed to copy link."));
-}
-
-// VLC Player
 function vlc_player() {
-    const openVlc = `vlc://${streamlink}`;
+    const openbisallink = bisallink;
+    const openVlc = `vlc://${openbisallink}`;
     window.location.href = openVlc;
 }
 
-// MX Player
-/*function mx_player() {
-    const openMx = `intent:${streamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
+function mx_player() {
+    const openbisallink = bisallink;
+    const openMx = `intent:${openbisallink}#Intent;package=com.mxtech.videoplayer.ad;end`;
     window.location.href = openMx;
 }
 
-function mx_player() {
-    const streamlink = window.location.href.replace("/watch/", "/");
-
-    // Make sure it's a proper HTTPS link
-    if (!streamlink.startsWith("http")) {
-        alert("Invalid video URL");
-        return;
-    }
-
-    const intentUrl = `intent:${streamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
-    window.location.href = intentUrl;
-}
-
-
-// Playit Player
 function playit_player() {
-    const openPlayit = `playit://playerv2/video?url=${streamlink}`;
+    const openbisallink = bisallink;
+    const openPlayit = `playit://playerv2/video?url=${openbisallink}`;
     window.location.href = openPlayit;
 }
 
-// S Player
 function s_player() {
-    const openSplayer = `intent:${streamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
+    const openbisallink = bisallink;
+    const openSplayer = `intent:${openbisallink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
     window.location.href = openSplayer;
 }
 
-// KM Player
 function km_player() {
-    const openKmplayer = `intent:${streamlink}#Intent;package=com.kmplayer;end`;
+    const openbisallink = bisallink;
+    const openKmplayer = `intent:${openbisallink}#Intent;package=com.kmplayer;end`;
     window.location.href = openKmplayer;
 }
 
-// HD Video Player
 function hd_player() {
-    const openHDplayer = `intent:${streamlink}#Intent;package=uplayer.video.player;end`;
+    const openbisallink = bisallink;
+    const openHDplayer = `intent:${openbisallink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
 }
-function copyStreamLink() {
-  const linkToCopy = streamlink.toLowerCase();
 
-  if (!navigator.clipboard) {
-    navigator.clipboard = {
-      writeText: function(text) {
-        return new Promise((resolve, reject) => {
-          try {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            resolve();
-          } catch (err) {
-            reject(err);
-          }
-        });
-      }
-    };
-  }
-
-  navigator.clipboard.writeText(linkToCopy)
-    .then(() => {
-      console.log('Stream link copied to clipboard!');
-      alert('Stream link copied successfully!');
-    })
-    .catch(err => {
-      console.error('Failed to copy link: ', err);
-      alert('Failed to copy link. Please try manually.');
-    });
-}*/
+function bisalDownload() {
+    const openbisallink = bisallink;
+    window.location.href = openbisallink;
+}
