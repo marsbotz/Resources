@@ -300,6 +300,8 @@ function hd_player() {
 }
 
 function bisalDownload() {
-    const openstreamlink = bisallink;
+    const openstreamlink = streamlink;
     window.location.href = openstreamlink;
+}
+
 }
