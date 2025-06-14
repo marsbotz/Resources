@@ -264,31 +264,31 @@ const videolink = window.location.href;
 const streamlink = videolink.replace("/watch/", "/");
 
 function vlc_player() {
-    const openstreamlink = bisallink;
+    const openstreamlink = streamlink;
     const openVlc = `vlc://${openstreamlink}`;
     window.location.href = openVlc;
 }
 
 function mx_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openMx = `intent:${openstreamlink}#Intent;package=com.mxtech.videoplayer.ad;end`;
     window.location.href = openMx;
 }
 
 function playit_player() {
-    const openbisallink = bisallink;
+    const openbisallink = streamlink;
     const openPlayit = `playit://playerv2/video?url=${openstreamlink}`;
     window.location.href = openPlayit;
 }
 
 function s_player() {
-    const openstreamlink = bisallink;
+    const openstreamlink = streamlink;
     const openSplayer = `intent:${openstreamlink}#Intent;action=com.young.simple.player.playback_online;package=com.young.simple.player;end`;
     window.location.href = openSplayer;
 }
 
 function km_player() {
-    const openstreamlink = bisallink;
+    const openstreamlink = streamlink;
     const openKmplayer = `intent:${openstreamlink}#Intent;package=com.kmplayer;end`;
     window.location.href = openKmplayer;
 }
