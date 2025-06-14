@@ -283,7 +283,7 @@ const playerUrlBuilder = {
     'nplayer': url => `nplayer-${url}`
   };*/
 
-  function playOnline(type) {
+  /*function playOnline(type) {
     const builder = playerUrlBuilder[type];
     if (!builder || !streamlink.startsWith("http")) {
       alert("Invalid player or stream link");
@@ -298,11 +298,11 @@ function copyLink() {
     navigator.clipboard.writeText(streamlink)
         .then(() => alert("Link copied to clipboard!"))
         .catch(err => alert("Failed to copy link."));
-}
-/*const videolink = window.location.href;
+}*/
+const videolink = window.location.href;
 const streamlink = videolink.replace("/watch/", "/dl/");
 
-/*function vlc_player() {
+function vlc_player() {
     const openstreamlink = streamlink;
     const openVlc = `vlc://${openstreamlink}`;
     window.location.href = openVlc;
@@ -336,7 +336,7 @@ function hd_player() {
     const openstreamlink = streamlink;
     const openHDplayer = `intent:${openstreamlink}#Intent;package=uplayer.video.player;end`;
     window.location.href = openHDplayer;
-}*/
+}
 // Get final stream link from current URL
 
 
