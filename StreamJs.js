@@ -261,7 +261,7 @@ document.addEventListener('keydown', function (e) {
 
 
 const videolink = window.location.href;
-const streamlink = videolink.replace("/watch/", "/");
+const streamlink = videolink.replace("/watch/", "/dl/");
 
 function vlc_player() {
     const openstreamlink = streamlink;
